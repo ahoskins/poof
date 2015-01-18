@@ -43,4 +43,19 @@ Effect: parse JSON corresponding to activity into a set of bash commands
 def start(activity):
 	startActivity(activity)
 
+'''
+Usage: $ poof delete <<application-name>> <<activity-name>>
+Effect: delete application from activity in the JSON
+'''
+@cli.command()
+@click.argument('application')
+@click.argument('activity')
+def delete(application, activity):
+	deleteApplication(application, activity)
+
+@cli.command()
+@click.argument('activity')
+def delete(activity):
+	deleteActivity(activity)
+
 		

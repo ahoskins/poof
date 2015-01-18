@@ -111,5 +111,40 @@ def startActivity(activity):
 	json_file.close()
 
 
+def deleteApplication(application, activity):
+	if not isAllowed(activity):
+		return
+
+	index = 0;
+	for entry in all_data['activities']:
+		if entry['activity'] == activity:
+			for source in entry['sources']:
+				if source == ('/Applications/' + application):
+					print "should delete"
+					del entry['sources'][index]
+				index = index + 1
+
+	delete(json_file)
+	json.dump(all_data, json_file, indent=4)
+	json_file.close()
+
+def deleteActivity(activity):
+	if not isAllowed(activity):
+		return
+
+	index = 0;
+	for entry in all_data['activities']:
+		if entry['activity'] == activity:
+			del all_data['activities'][index]
+		index = index + 1
+
+	delete(json_file)
+	json.dump(all_data, json_file, indent=4)
+	json_file.close()
+
+
+
+
+
 
 
