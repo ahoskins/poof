@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
 	name='poof',
 	version='0.1',
-	py_modules=['poof'],
+	py_modules=['poof', 'data'],
 	install_requires=[
 		'Click',
 	],

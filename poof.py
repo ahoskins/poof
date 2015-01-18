@@ -8,6 +8,7 @@ Examples could be: Android development, web dev, music, writing, blogging, etc
 import click
 import os
 import json
+from data import *
 
 
 @click.group()
@@ -21,8 +22,6 @@ Effect: create new activity in JSON file
 @cli.command()
 @click.argument('name')
 def activity(name):
-	click.echo('Hello %s' % name)
-	# add to activity to a JSON file called .poof
 	newActivity(name)
 
 '''
@@ -45,30 +44,7 @@ Effect: parse JSON corresponding to activity into a set of bash commands
 def start(activity):
 	click.echo('%s' % activity)
 
-
-def newActivity(name):
-	# two cases, file exists or it doesn't
-	home_files = os.listdir(os.environ['HOME'])
-	if '.poof' in home_files:
-		print "its there"
-		json_file_r = open(os.environ['HOME'] + '/.poof', 'r')
-
-		# load the file
-		all_data = json.load(json_file_r)
-
-		# append to this object
-		all_data.append({'activity': name})
-
-		json_file_w = open(os.environ['HOME'] + '/.poof', 'w')
-
-		# dump the data back to the file
-		json.dump(all_data, json_file_w)
-	else:
-		print "not there"
-
-		json_file = open(os.environ['HOME'] + '/.poof', 'w')
-		data = {'activity': name}
-		json.dump([data], json_file)
+		
 
 
 
