@@ -32,8 +32,7 @@ Effect: add the application to the JSON corresponding to activity
 @click.argument('application')
 @click.argument('activity')
 def add(application, activity):
-	click.echo('%s' % application)
-	click.echo('%s' % activity)
+	addApplication(application, activity)
 
 '''
 Usage: $ poof start <<activity-name>>
