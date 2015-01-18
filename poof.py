@@ -44,12 +44,3 @@ def start(activity):
 	startActivity(activity)
 
 		
-
-
-
-
-		
-
-		
-
-

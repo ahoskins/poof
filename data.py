@@ -3,6 +3,23 @@ import json
 
 file_path = os.environ['HOME'] + '/.poof'
 
+
+'''
+File setup
+
+If $HOME/.poof does not exist, create it
+Otherwise, assume it's not empty and read in the contents
+
+In either case, store a file handle
+'''
+if '.poof' not in os.listdir(os.environ['HOME']):
+	open(file_path, 'w').close()
+else:
+	all_data = json.load(open(file_path, 'r'))
+
+json_file = open(file_path, 'r+')
+
+
 '''
 Invoked after: $ poof activity <new-activity>
 
@@ -12,19 +29,29 @@ Either the file exists or it doesn't...respond accordingly
 def newActivity(name):
 	home_files = os.listdir(os.environ['HOME'])
 
-	if '.poof' in home_files:
+	if os.stat("/Users/Andrew/.poof").st_size != 0:
 		# Read in the JSON, and append to the de-serialized object
-		json_file_r = open(file_path, 'r')
-		all_data = json.load(json_file_r)
 		all_data["activities"].append({"sources": [], "activity": name})
 
+		# Empty the file
+		delete(json_file)
+
 		# Dump the object back to the file
-		json_file_w = open(file_path, 'w')
-		json.dump(all_data, json_file_w, indent=4)
+		json.dump(all_data, json_file, indent=4)
 
 	else:
-		json_file = open(file_path, 'w')
 		json.dump({"activities": [{"sources": [], "activity": name}]}, json_file, indent=4)
+
+	json_file.close()
+
+
+'''
+Used to clear the file contents
+'''
+def delete(file):
+	file.seek(0)
+	file.truncate()
+
 
 '''
 Invoked after: $ poof add <application-name> <<activity>>
@@ -35,15 +62,16 @@ def addApplication(application, activity):
 	if not isAllowed(activity):
 		return
 
-	json_file_r = open(file_path, 'r')
-	all_data = json.load(json_file_r)
-
 	for entry in all_data["activities"]:
 		if entry["activity"] == activity:
 			entry["sources"].append("/Applications/" + application)
 
-	json_file_w = open(file_path, 'w')
-	json.dump(all_data, json_file_w, indent=4)
+	delete(json_file)
+
+	json.dump(all_data, json_file, indent=4)
+
+	json_file.close()
+
 
 '''
 Called by addApplication to verify if the activity has been created first
@@ -55,8 +83,6 @@ def isAllowed(activity):
 		return False
 
 	# Does the file contain that activity?
-	json_file_r = open(os.environ['HOME'] + '/.poof', 'r')
-	all_data = json.load(json_file_r)
 	for entry in all_data["activities"]:
 		if entry["activity"] == activity:
 			return True
@@ -65,18 +91,16 @@ def isAllowed(activity):
 	print "Hey you! Add the activity first."
 	return False
 
+
 '''
 Invoked after: $ poof start <<activity>>
 
-System open command the files under the activity in the JSON
+System open command the files under the activity in the JSON file
 '''
 def startActivity(activity):
 	# Does the activity exists?
 	if not isAllowed(activity):
 		return
-	
-	json_file_r = open(file_path, 'r')
-	all_data = json.load(json_file_r)
 
 	for entry in all_data["activities"]:
 		if entry["activity"] == activity:
@@ -84,9 +108,7 @@ def startActivity(activity):
 				os.system("open " + source + ".app")
 
 
-
-
-
+	json_file.close()
 
 
 
