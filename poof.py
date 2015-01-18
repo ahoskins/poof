@@ -41,7 +41,7 @@ Effect: parse JSON corresponding to activity into a set of bash commands
 @cli.command()
 @click.argument('activity')
 def start(activity):
-	click.echo('%s' % activity)
+	startActivity(activity)
 
 		
 
