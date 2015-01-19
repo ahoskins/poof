@@ -26,22 +26,22 @@ Usage: $ poof space <space-name>
 Effect: create new space in JSON file
 '''
 @cli.command()
-@click.argument('name')
-def space(name):
+@click.argument('space_name')
+def space(space_name):
 	space = Space()
-	space.add(name)
+	space.add(space_name)
 
 
 '''
-Usage: $ poof add <application-name> <<space-name>>
+Usage: $ poof add <space-name> <<application-name>>
 Effect: add the application to the JSON corresponding to space
 '''
 @cli.command()
-@click.argument('name')
-@click.argument('space')
-def add(name, space):
-	application = Application()
-	application.add(name, space)
+@click.argument('space_name')
+@click.argument('application_name')
+def add(space_name, application_name):
+	the_application = Application()
+	the_application.add(application_name, space_name)
 
 
 '''
@@ -49,10 +49,10 @@ Usage: $ poof start <<space-name>>
 Effect: parse JSON corresponding to space into a set of bash commands
 '''
 @cli.command()
-@click.argument('name')
-def start(name):
+@click.argument('space_name')
+def start(space_name):
 	space = Space()
-	space.start(name)
+	space.start(space_name)
 
 
 '''
@@ -60,14 +60,14 @@ Usage: $ poof delete <<space-name> <<application-name>> ... OR ... $ poof delete
 Effect: delete application from space ... OR ... delete entire space 
 '''
 @cli.command()
-@click.argument('space')
-@click.argument('app', required=False)
-def delete(space, app):
-	if app != None:
+@click.argument('space_name')
+@click.argument('application_name', required=False)
+def delete(space_name, application_name):
+	if application_name != None:
 		application = Application()
-		application.delete(app, space)
+		application.delete(space_name, application_name)
 	else:
 		the_space = Space()
-		the_space.delete(space)
+		the_space.delete(space_name)
 
 		

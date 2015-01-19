@@ -119,7 +119,7 @@ class Storage:
 
 	@returns: nothing
 	'''
-	def deleteApplication(self, application, space):
+	def deleteApplication(self, space, application):
 		index = 0
 		for space_obj in self.all_data['activities']:
 			if space_obj['space'] == space:
