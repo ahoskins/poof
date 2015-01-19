@@ -14,18 +14,18 @@ class Application:
 
 
 	'''
-	Add an application to the activity in the JSON
+	Add an application to the space in the JSON
 
 	@returns: nothing
 	'''
-	def add(self, name, activity):
-		self.storage.addApplication(name, activity)
+	def add(self, name, space):
+		self.storage.addApplication(name, space)
 
 
 	'''
-	Delete an application from an activity in the JSON
+	Delete an application from an space in the JSON
 
 	@returns: nothing
 	'''
-	def delete(self, name, activity):
-		self.storage.deleteApplication(name, activity)
+	def delete(self, name, space):
+		self.storage.deleteApplication(name, space)

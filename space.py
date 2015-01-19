@@ -4,8 +4,8 @@ from storage import *
 Class responsible for creating and controlling the creation of activities
 '''
 
-class Activity:
-	
+class Space:
+
 	'''
 	Create an instance of the Storage class
 	'''
@@ -14,24 +14,24 @@ class Activity:
 
 
 	'''
-	Add an activity to the JSON
+	Add an space to the JSON
 
 	@returns: nothing
 	'''
 	def add(self, name):
-		activity_obj = {"activity": name, "sources": []}
-		self.storage.addActivity(activity_obj)
+		space_obj = {"space": name, "sources": []}
+		self.storage.addSpace(space_obj)
 
 
 	'''
-	Delete the entire activity from the JSON
+	Delete the entire space from the JSON
 	'''
 	def delete(self, name):
-		self.storage.deleteActivity(name)
+		self.storage.deleteSpace(name)
 
 
 	'''
-	Start the activity
+	Start the space
 
 	Applications are stored as a string array.
 	Bash command 'open' each.
@@ -39,11 +39,11 @@ class Activity:
 	@returns: nothing
 	'''
 	def start(self, name):
-		activity_obj = self.storage.getActivity(name)
-		if activity_obj == -1:
+		space_obj = self.storage.getSpace(name)
+		if space_obj == -1:
 			print name + ' does not exist.'
 
-		for source in activity_obj['sources']:
+		for source in space_obj['sources']:
 			os.system('open ' + source + '.app')
 
 

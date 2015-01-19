@@ -4,7 +4,7 @@ import json
 '''
 Class responsible for touching the JSON file.  It is the only entity that modifies the underlying JSON.
 
-It's called from the activity and application class's.
+It's called from the space and application class's.
 '''
 
 class Storage:
@@ -48,84 +48,84 @@ class Storage:
 
 
 	'''
-	Add activity object to JSON file
+	Add space object to JSON file
 
 	@returns: nothing
 	'''
-	def addActivity(self, activity):
-		self.all_data['activities'].append(activity)
+	def addSpace(self, space):
+		self.all_data['activities'].append(space)
 		self.delete()
 		self.dumpData()
-		print "Activity added successfully."
+		print "space added successfully."
 		self.json_file.close()
 
 
 	'''
-	Get a specified activity object from JSON
+	Get a specified space object from JSON
 
-	@returns: activity object or -1
+	@returns: space object or -1
 	'''
-	def getActivity(self, activity):
-		for activity_obj in self.all_data['activities']:
-			if activity_obj['activity'] == activity:
-				return activity_obj
+	def getSpace(self, space):
+		for space_obj in self.all_data['activities']:
+			if space_obj['space'] == space:
+				return space_obj
 
-		# Activity didn't exist
+		# space didn't exist
 		return -1
 
 
 	'''
-	Delete a specified activity object from JSON
+	Delete a specified space object from JSON
 
 	@returns: nothing 
 	'''
-	def deleteActivity(self, activity):
+	def deleteSpace(self, space):
 		index = 0
-		for activity_obj in self.all_data['activities']:
-			if activity_obj['activity'] == activity:
+		for space_obj in self.all_data['activities']:
+			if space_obj['space'] == space:
 				del self.all_data['activities'][index]
 				self.delete()
 				self.dumpData()
 				self.json_file.close()
-				print 'Activity ' + activity +  ' deleted.'
+				print 'space ' + space +  ' deleted.'
 				return
 			index = index + 1
 
-		# Activity didn't exist
-		print activity + ' does not exist.'
+		# space didn't exist
+		print space + ' does not exist.'
 
 
 	'''
-	Add an application to the specified activity array in JSON
+	Add an application to the specified space array in JSON
 
 	@returns: nothing
 	'''
-	def addApplication(self, application, activity):
-		for activity_obj in self.all_data['activities']:
-			if activity_obj['activity'] == activity:
-				activity_obj['sources'].append('/Applications/' + application)
+	def addApplication(self, application, space):
+		for space_obj in self.all_data['activities']:
+			if space_obj['space'] == space:
+				space_obj['sources'].append('/Applications/' + application)
 				self.delete()
 				self.dumpData()
 				print 'Application added successfully.'
 				self.json_file.close()
 				return
 
-		# Activity didn't exist
-		print 'The activity you ask for does not exist.'
+		# space didn't exist
+		print 'The space you ask for does not exist.'
 
 
 	'''
-	Delete specified application from specified activity in JSON
+	Delete specified application from specified space in JSON
 
 	@returns: nothing
 	'''
-	def deleteApplication(self, application, activity):
+	def deleteApplication(self, application, space):
 		index = 0
-		for activity_obj in self.all_data['activities']:
-			if activity_obj['activity'] == activity:
-				for source in activity_obj['sources']:
+		for space_obj in self.all_data['activities']:
+			if space_obj['space'] == space:
+				for source in space_obj['sources']:
 					if source == ('/Applications/' + application):
-						del activity_obj['sources'][index]
+						del space_obj['sources'][index]
 						self.delete()
 						self.dumpData()
 						print 'Application ' + application + ' deleted.'
@@ -133,7 +133,7 @@ class Storage:
 						return
 					index = index + 1
 
-		# Activity didn't exist
-		print 'The activity you ask for does not exist.'
+		# space didn't exist
+		print 'The space you ask for does not exist.'
 
 
