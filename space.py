@@ -44,7 +44,7 @@ class Space:
 			print name + ' does not exist.'
 
 		for source in space_obj['sources']:
-			os.system('open ' + source + '.app')
+			os.system('open ' + source)
 
 
 	

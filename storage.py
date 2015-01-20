@@ -123,6 +123,7 @@ class Storage:
 		index = 0
 		for space_obj in self.all_data['activities']:
 			if space_obj['space'] == space:
+				print "inside space"
 				for source in space_obj['sources']:
 					if source == ('/Applications/' + application):
 						del space_obj['sources'][index]
@@ -134,6 +135,6 @@ class Storage:
 					index = index + 1
 
 		# space didn't exist
-		print 'The space you ask for does not exist.'
+		print 'The space you ask for does not exist....'
 
 
