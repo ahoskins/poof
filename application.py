@@ -1,4 +1,5 @@
 from storage import *
+from validation import *
 
 '''
 Class responsible for controlling the creation of applications
@@ -19,7 +20,9 @@ class Application:
 	@returns: nothing
 	'''
 	def add(self, name, space):
-		self.storage.addApplication(name, space)
+		validate = Validation()
+		if validate.checkMatch(name):
+			self.storage.addApplication(name, space)
 
 
 	'''
