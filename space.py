@@ -1,4 +1,5 @@
 from storage import *
+import subprocess
 
 '''
 Class responsible for creating and controlling the creation of activities
@@ -44,7 +45,7 @@ class Space:
 			print name + ' does not exist.'
 
 		for source in space_obj['sources']:
-			os.system('open ' + source)
+			subprocess.call(['open', source])
 
 
 	
