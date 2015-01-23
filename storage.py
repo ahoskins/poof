@@ -138,3 +138,15 @@ class Storage:
 		print 'The space you ask for does not exist....'
 
 
+	'''
+	Prints everyting in the JSON
+
+	@returns: nothing
+	'''
+	def all(self):
+		for space in self.all_data['activities']:
+			print 'Space name: ' + space['space']
+			for app in space['sources']:
+				print '    ' +  app
+
+

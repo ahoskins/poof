@@ -38,7 +38,7 @@ Effect: create new space in JSON file
 @cli.command(options_metavar='')
 @click.argument('space_name', metavar='<space-name>')
 def space(space_name):
-	"""Add a label for an application group"""
+	"""Add a new space"""
 	space = Space()
 	space.add(space_name)
 
@@ -63,7 +63,7 @@ Effect: parse JSON corresponding to space into a set of bash commands
 @cli.command(options_metavar='')
 @click.argument('space_name', metavar='<space-name>')
 def start(space_name):
-	"""Open all applications added to the space"""
+	"""Open all applications added to a space"""
 	space = Space()
 	space.start(space_name)
 
@@ -76,7 +76,7 @@ Effect: delete application from space ... OR ... delete entire space
 @click.argument('space_name', metavar='<space-name>')
 @click.argument('application_name', required=False, metavar='<application-name>')
 def delete(space_name, application_name):
-	"""Deletes the ENTIRE space if application name NOT given.  Deletes the SINGLE application from the space if name IS given."""
+	"""Deletes the entire space if application name not given.  Deletes the single application from the space if name is given."""
 	if application_name != None:
 		application = Application()
 		application.delete(space_name, application_name)
@@ -84,4 +84,13 @@ def delete(space_name, application_name):
 		the_space = Space()
 		the_space.delete(space_name)
 
-		
+
+'''
+Usage: $ poof all
+Effect: prints everything in the JSON
+'''
+@cli.command(options_metavar='')
+def all():
+	"""Show all applications in all spaces"""
+	storage = Storage()
+	storage.all()
