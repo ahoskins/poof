@@ -1,5 +1,6 @@
 import os
 import json
+from colors import *
 
 '''
 Class responsible for touching the JSON file.  It is the only entity that modifies the underlying JSON.
@@ -56,7 +57,7 @@ class Storage:
 		self.all_data['activities'].append(space)
 		self.delete()
 		self.dumpData()
-		print "space added successfully."
+		print colors.OKGREEN + "Space added successfully." + colors.ENDC
 		self.json_file.close()
 
 
@@ -87,12 +88,12 @@ class Storage:
 				self.delete()
 				self.dumpData()
 				self.json_file.close()
-				print 'space ' + space +  ' deleted.'
+				print colors.OKGREEN + 'Space successfully deleted.' + colors.ENDC
 				return
 			index = index + 1
 
 		# space didn't exist
-		print space + ' does not exist.'
+		print colors.WARNING + 'The space you ask for does not exist.' + colors.ENDC
 
 
 	'''
@@ -106,12 +107,12 @@ class Storage:
 				space_obj['sources'].append('/Applications/' + application)
 				self.delete()
 				self.dumpData()
-				print 'Application added successfully.'
+				print colors.OKGREEN + 'Application added successfully.' + colors.ENDC
 				self.json_file.close()
 				return
 
 		# space didn't exist
-		print 'The space you ask for does not exist.'
+		print colors.WARNING + 'The space you ask for does not exist.' + colors.ENDC
 
 
 	'''
@@ -123,19 +124,18 @@ class Storage:
 		index = 0
 		for space_obj in self.all_data['activities']:
 			if space_obj['space'] == space:
-				print "inside space"
 				for source in space_obj['sources']:
 					if source == ('/Applications/' + application):
 						del space_obj['sources'][index]
 						self.delete()
 						self.dumpData()
-						print 'Application ' + application + ' deleted.'
+						print colors.OKGREEN + 'Application deleted successfully.' + colors.ENDC
 						self.json_file.close()
 						return
 					index = index + 1
 
 		# space didn't exist
-		print 'The space you ask for does not exist....'
+		print colors.WARNING + 'The space you ask for does not exist.' + colors.ENDC
 
 
 	'''
@@ -145,8 +145,8 @@ class Storage:
 	'''
 	def all(self):
 		for space in self.all_data['activities']:
-			print 'Space name: ' + space['space']
+			print colors.OKGREEN + 'Space name: ' + space['space'] + colors.ENDC
 			for app in space['sources']:
-				print '    ' +  app
+				print colors.OKBLUE + '    ' +  app
 
 

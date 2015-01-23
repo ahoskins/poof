@@ -1,6 +1,7 @@
 import os
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
+from colors import *
 
 class Validation:
 
@@ -30,11 +31,11 @@ class Validation:
 		fuzzy_result = process.extractOne(name, choices)
 
 		if fuzzy_result[1] > 80:
-			print 'Did you mean "' + fuzzy_result[0] + '"? Yes or no:'
+			print colors.OKBLUE + 'Did you mean "' + fuzzy_result[0] + '"? Yes or no:' + colors.ENDC
 			pick = raw_input('--> ')
 			if pick == 'Yes' or pick == 'yes' or pick == 'y':
 				return fuzzy_result[0]
 
 		else:
-			print 'No match in /Applications/'
+			print colors.WARNING + 'No match in /Applications/' + colors.ENDC
 			return None

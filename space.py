@@ -42,7 +42,7 @@ class Space:
 	def start(self, name):
 		space_obj = self.storage.getSpace(name)
 		if space_obj == -1:
-			print name + ' does not exist.'
+			print colors.WARNING + 'This space does not exist.' + colors.ENDC
 
 		for source in space_obj['sources']:
 			subprocess.call(['open', source])
