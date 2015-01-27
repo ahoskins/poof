@@ -46,6 +46,9 @@ As mentioned above, this will only work on OS X.  This is because it launches ap
 
 Poof stores the data in a simple JSON file at $HOME/.poof.  This is the only place any data is stored - and messing with this file is not advised.
 
+# contributing
+Support for other platforms, tab-completion, more customization...those are on the agenda.  PR's welcome!
+
 
 
 
