@@ -1,5 +1,5 @@
-from storage import *
 import subprocess
+from storage import *
 
 '''
 Class responsible for creating and controlling the creation of activities
@@ -42,7 +42,8 @@ class Space:
 	def start(self, name):
 		space_obj = self.storage.getSpace(name)
 		if space_obj == -1:
-			print colors.WARNING + 'This space does not exist.' + colors.ENDC
+			print Colors.WARNING + 'This space does not exist.' + Colors.ENDC
+			return
 
 		for source in space_obj['sources']:
 			subprocess.call(['open', source])

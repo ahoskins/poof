@@ -31,11 +31,11 @@ class Validation:
 		fuzzy_result = process.extractOne(name, choices)
 
 		if fuzzy_result[1] > 80:
-			print colors.OKBLUE + 'Did you mean "' + fuzzy_result[0] + '"? Yes or no:' + colors.ENDC
+			print Colors.OKBLUE + 'Did you mean "' + fuzzy_result[0] + '"? Yes or no:' + Colors.ENDC
 			pick = raw_input('--> ')
 			if pick == 'Yes' or pick == 'yes' or pick == 'y':
 				return fuzzy_result[0]
 
 		else:
-			print colors.WARNING + 'No match in /Applications/' + colors.ENDC
+			print Colors.WARNING + 'No match in /Applications/' + Colors.ENDC
 			return None

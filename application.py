@@ -1,6 +1,5 @@
 from storage import *
 from validation import *
-
 '''
 Class responsible for controlling the creation of applications
 '''

@@ -57,7 +57,7 @@ class Storage:
 		self.all_data['activities'].append(space)
 		self.delete()
 		self.dumpData()
-		print colors.OKGREEN + "Space added successfully." + colors.ENDC
+		print Colors.OKGREEN + "Space added successfully." + Colors.ENDC
 		self.json_file.close()
 
 
@@ -88,12 +88,12 @@ class Storage:
 				self.delete()
 				self.dumpData()
 				self.json_file.close()
-				print colors.OKGREEN + 'Space successfully deleted.' + colors.ENDC
+				print Colors.OKGREEN + 'Space successfully deleted.' + Colors.ENDC
 				return
 			index = index + 1
 
 		# space didn't exist
-		print colors.WARNING + 'The space you ask for does not exist.' + colors.ENDC
+		print Colors.WARNING + 'The space you ask for does not exist.' + Colors.ENDC
 
 
 	'''
@@ -107,12 +107,12 @@ class Storage:
 				space_obj['sources'].append('/Applications/' + application)
 				self.delete()
 				self.dumpData()
-				print colors.OKGREEN + 'Application added successfully.' + colors.ENDC
+				print Colors.OKGREEN + 'Application added successfully.' + Colors.ENDC
 				self.json_file.close()
 				return
 
 		# space didn't exist
-		print colors.WARNING + 'The space you ask for does not exist.' + colors.ENDC
+		print Colors.WARNING + 'The space you ask for does not exist.' + Colors.ENDC
 
 
 	'''
@@ -129,13 +129,13 @@ class Storage:
 						del space_obj['sources'][index]
 						self.delete()
 						self.dumpData()
-						print colors.OKGREEN + 'Application deleted successfully.' + colors.ENDC
+						print Colors.OKGREEN + 'Application deleted successfully.' + Colors.ENDC
 						self.json_file.close()
 						return
 					index = index + 1
 
 		# space didn't exist
-		print colors.WARNING + 'The space you ask for does not exist.' + colors.ENDC
+		print Colors.WARNING + 'The application you ask for does not exist.' + Colors.ENDC
 
 
 	'''
@@ -145,8 +145,8 @@ class Storage:
 	'''
 	def all(self):
 		for space in self.all_data['activities']:
-			print colors.OKGREEN + 'Space name: ' + space['space'] + colors.ENDC
+			print Colors.OKGREEN + 'Space name: ' + space['space'] + Colors.ENDC
 			for app in space['sources']:
-				print colors.OKBLUE + '    ' +  app
+				print Colors.OKBLUE + '    ' +  app
 
 
