@@ -1,3 +1,4 @@
 venv
 poof.egg-info
 *.pyc
+dist

@@ -1,14 +1,14 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='poof',
     version='0.1',
-    py_modules=['poof', 'storage', 'space'],
+    packages=['poof'],
     install_requires=[
         'Click', 'fuzzywuzzy',
     ],
     entry_points='''
         [console_scripts]
-        poof=poof:cli
-        ''',
-    )
+        poof=poof.poof:cli
+    ''',
+)
