@@ -9,9 +9,10 @@ Quickly open "your setup" from the command line.  Some examples of setup's:
 Poof automates the process of starting up applications that comprise these setups.  It's designed for Mac OS X, and currently does not work on other platforms.
 
 # installation
-clone, then `$ pip install .`
+1. clone this repo
+2. `$ pip install .`
 
-This will install [Click](http://click.pocoo.org/3/), the only dependency. 
+Now `$ poof` should be available at the command line.
 
 # usage
 A setup is known as a **space**.  An application within the space is known an **application**.
@@ -37,10 +38,16 @@ If you need to, you can either delete the entire space or a single application i
 ### delete an entire space:
     $ poof delete <space-name>
     
+### if you're a lost puppy:
+    $ poof help
+    
 # underlying form
 As mentioned above, this will only work on OS X.  This is because it launches applications out of `/Applications/`.   
 
 Poof stores the data in a simple JSON file at $HOME/.poof.  This is the only place any data is stored - and messing with this file is not advised.
+
+# contributing
+Support for other platforms, tab-completion, more customization...those are on the agenda.  PR's welcome!
 
 
 
