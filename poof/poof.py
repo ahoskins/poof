@@ -22,7 +22,7 @@ An alias for --help because sometimes people hate typing in those extra dashes
 '''
 @cli.command()
 def help():
-	"""This help page"""
+	"""this help page"""
 	subprocess.call(['poof', '--help'])
 	pass
 
@@ -72,7 +72,7 @@ Effect: delete application from space ... OR ... delete entire space
 @click.argument('space_name', metavar='<space-name>')
 @click.argument('application_name', required=False, metavar='<application-name>')
 def delete(space_name, application_name):
-	"""$ poof delete <space> OR $ poof delete <space> <application>"""
+	"""$ poof delete <space> [<application>]"""
 	if application_name != None:
 		application = Application()
 		application.delete(space_name, application_name)
@@ -87,6 +87,6 @@ Effect: prints everything in the JSON
 '''
 @cli.command(options_metavar='')
 def all():
-	"""List all spaces and applications"""
+	"""list all spaces and applications"""
 	storage = Storage()
 	storage.all()
