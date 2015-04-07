@@ -1,6 +1,8 @@
 import os
 import json
 
+from colors import Colors
+
 '''
 Class responsible for touching the JSON file.  It is the only entity that modifies the underlying JSON.
 

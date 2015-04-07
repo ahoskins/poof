@@ -2,6 +2,9 @@
 Class responsible for controlling the creation of applications
 '''
 
+from storage import Storage 
+from validation import Validation
+
 class Application:
 	
 	'''

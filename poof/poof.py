@@ -10,6 +10,10 @@ import os
 import json
 import subprocess
 
+from space import Space 
+from application import Application
+from storage import Storage
+
 '''
 A command line group...all the below commands stem off this group
 '''

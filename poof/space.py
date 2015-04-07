@@ -1,5 +1,7 @@
 import subprocess
 
+from storage import Storage 
+
 '''
 Class responsible for creating and controlling the creation of activities
 '''
