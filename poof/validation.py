@@ -1,7 +1,6 @@
 import os
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
-from colors import *
 
 class Validation:
 
