@@ -9,7 +9,16 @@ Quickly open "your setup" from the command line.  Some examples of setup's:
 Poof automates the process of starting up applications that comprise these setups.  It's designed for Mac OS X, and currently does not work on other platforms.
 
 # installation
+
+from pip:
+
 `$ pip install poof`
+
+or from source: 
+
+1. clone this
+2. cd into it
+3. $ pip install . 
 
 Now `$ poof` will be available at the command line.
 
