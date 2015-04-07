@@ -22,7 +22,7 @@ An alias for --help because sometimes people hate typing in those extra dashes
 '''
 @cli.command()
 def help():
-	"""The wonderful help page"""
+	"""This help page"""
 	subprocess.call(['poof', '--help'])
 	pass
 
@@ -34,7 +34,7 @@ Effect: create new space in JSON file
 @cli.command(options_metavar='')
 @click.argument('space_name', metavar='<space-name>')
 def space(space_name):
-	"""Add a new space"""
+	"""$ poof add <new-space-name>"""
 	space = Space()
 	space.add(space_name)
 
@@ -47,7 +47,7 @@ Effect: add the application to the JSON corresponding to space
 @click.argument('space_name', metavar='<space-name>')
 @click.argument('application_name', metavar='<application-name>')
 def add(space_name, application_name):
-	"""Add an application to a space"""
+	"""$ poof add <existing-space> <new-application>"""
 	the_application = Application()
 	the_application.add(application_name, space_name)
 
@@ -59,7 +59,7 @@ Effect: parse JSON corresponding to space into a set of bash commands
 @cli.command(options_metavar='')
 @click.argument('space_name', metavar='<space-name>')
 def start(space_name):
-	"""Open all applications added to a space"""
+	"""$ poof start <space-to-start>"""
 	space = Space()
 	space.start(space_name)
 
@@ -72,7 +72,7 @@ Effect: delete application from space ... OR ... delete entire space
 @click.argument('space_name', metavar='<space-name>')
 @click.argument('application_name', required=False, metavar='<application-name>')
 def delete(space_name, application_name):
-	"""Deletes the entire space if application name not given.  Deletes the single application from the space if name is given."""
+	"""$ poof delete <space> OR $ poof delete <space> <application>"""
 	if application_name != None:
 		application = Application()
 		application.delete(space_name, application_name)
@@ -87,6 +87,6 @@ Effect: prints everything in the JSON
 '''
 @cli.command(options_metavar='')
 def all():
-	"""Show all applications in all spaces"""
+	"""List all spaces and applications"""
 	storage = Storage()
 	storage.all()
