@@ -38,7 +38,7 @@ Effect: create new space in JSON file
 @cli.command(options_metavar='')
 @click.argument('space_name', metavar='<space-name>')
 def space(space_name):
-	"""$ poof add <new-space-name>"""
+	"""$ poof space <new-space-name>"""
 	space = Space()
 	space.add(space_name)
 
